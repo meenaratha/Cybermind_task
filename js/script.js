@@ -162,6 +162,14 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.toggle('delete-btn-left');
         });
     });
+
+    mainDeleteBtn.addEventListener('dblclick', function() {
+        document.querySelectorAll('.delete-btn').forEach((btn) => {
+            btn.classList.remove('show');
+            btn.classList.add('hide');
+            btn.classList.remove('delete-btn-left');
+        });
+    });
     
     
 });
