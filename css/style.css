@@ -7,13 +7,17 @@ body {
     font-family: Arial, sans-serif;
 }
 /* open modal button */
-#open-modal-btn{
-    background-color: blue;
+.open-modal{
+    background-color: rgb(3, 3, 112);
      color: #fff;
      border: none;
      border-radius: 6px;
      box-shadow: 0px 2px 4px rgba(0, 0, 0, .08), 2px 4px 12px rgba(0, 0, 0, .08);
-     padding: 6px 1.6rem;
+     padding: 10px 1.6rem;
+     font-size: 20px;
+     font-weight: 600;
+     font-style: italic;
+     margin-top: 50px;
  }
 .custom-select {
     position: relative;
@@ -62,7 +66,7 @@ body {
     font-size: 13px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .08), 0 4px 12px rgba(0, 0, 0, .08);
-    z-index: 2;
+    z-index: 5;
 
 }
 
@@ -70,6 +74,7 @@ body {
     cursor: pointer;
     padding: 6px;
     border-bottom:1px dotted #ddd;
+    z-index: 3;
 }
 
 .select-items div img {
@@ -85,6 +90,7 @@ body {
 }
 .select-items div:hover {
     background-color: #fff;
+    color: blue;
 }
 
 .select-hide {
@@ -128,12 +134,28 @@ body {
     display: block;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 100;
+    animation: fade 0.8s linear;
+    transition: all 0.5s ease;
 }
 .menu-icon-container{
     display: flex;
     justify-content:space-between;
     align-items: center;
 }
+.menu-icon-container .left-icon :hover .left-icon svg g{
+    stroke: green !important;
+    stroke-width: 2px;
+    
+ }
+ .left-icon{
+    cursor: pointer;
+ }
+ .right-icon{
+    display: flex;
+    cursor: pointer;
+ }
 .right-icon svg:first-child{
     margin-right: 10px;
 }
@@ -208,7 +230,7 @@ body {
     margin-top: 20px;
     margin-bottom: 0px;
 }
-.commend-container{
+.commend-container, .commend-input-container{
     padding: 10px 10px;
     padding-bottom: 0px;
 }
@@ -216,6 +238,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
 }
 .commend-item img{
     width: 30px;
@@ -233,6 +256,7 @@ body {
 .commend-text p{
     font-size: 12px;
     margin: 0px;
+    text-wrap: balance;
 }
 .commend-input{
    display: flex;
@@ -250,6 +274,10 @@ body {
 .commend-btn{
     background: transparent;
     border: none;
+    cursor: pointer;
+}
+.commend-btn:hover{
+    animation: zoom 0.5s linear;
 }
 .commend-btn img{
     width: 20px;
@@ -260,18 +288,65 @@ body {
 .hide{
     display: none;
 }
+.show{
+    display: block;
+}
 .delete-btn{
     margin-left: 4px;
+    animation: 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 normal both running btn-slide-right;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+}
+.delete-btn:hover{
+  animation: 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 normal both running zoom;
 }
 .commend-item:hover .delete-btn{
     display: block;
-    animation: fade 0.8s linear;
-    transition: all 0.5s ease;
+    animation: 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 normal both running btn-slide-left;
+}
+.delete-btn-left{
+    animation: 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s 1 normal both running btn-slide-left;
+
 }
 .commend-item:hover{
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, .08), 2px 4px 12px rgba(0, 0, 0, .08);
-    padding: 6px;
+    /* box-shadow: 0px 2px 4px rgba(0, 0, 0, .08), 2px 4px 12px rgba(0, 0, 0, .08);
+    padding: 6px; */
     transition: all 0.5s ease;
+}
+.hide-shadow:hover {
+    box-shadow: none;
+    padding: 0px;
+}
+@keyframes zoom {
+    0%{
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes btn-slide-left {
+    0% {
+        transform: translateX(40px);
+    }
+   
+    100% {
+        transform: translateX(0px);
+    }
+}
+@keyframes btn-slide-right {
+    0% {
+        transform: translateX(0px);
+    }
+   
+    100% {
+        transform: translateX(40px);
+        opacity: 0;
+    }
 }
 @keyframes fade {
     0%{
@@ -283,9 +358,5 @@ body {
     100%{
         opacity: 1;
     }
-}
-.left-icon svg:hover .left-icon svg g{
-   stroke: green !important;
-   
 }
 
