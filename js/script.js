@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentInput = document.getElementById('commentInput');
     const commentsContainer = document.getElementById('commentsContainer');
     const mainDeleteBtn = document.querySelector('.main-delete');
+    const inputContainer = document.querySelector('.commend-input');
 
+   
     const initialComments = [
         {
             "username": "John Doe",
@@ -62,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
             "profileImg": "images/profile1.jpeg"
         },
         {
-            "username": "Alice Johnson",
+            "username": "John Doe",
             "comment": "Thanks for Assigning me on the task. We'll get the details ironed out",
-            "profileImg": "images/profile3.jpg"
+            "profileImg": "images/profile1.jpeg"
         }
     ];
     
@@ -83,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
         span.textContent = username;
 
         const p = document.createElement('p');
-        p.classList.add('comment-display');
+        p.classList.add('commend-display');
         p.textContent = commentText;
 
         const deleteBtn = document.createElement('div');
@@ -92,6 +94,39 @@ document.addEventListener('DOMContentLoaded', () => {
         deleteBtn.addEventListener('click', () => {
             commentItem.remove();
         });
+        // edit
+           let currentCommend =null;
+        //    const editJsonText = document.querySelector('.commend-display');
+           commentItem.addEventListener('dblclick', function(){
+            commentItem.classList.add('edit-bg');
+            currentCommend = p;
+            const oldJsonText = p.innerText;
+            commentInput.value = oldJsonText ;
+            inputContainer.classList.add('focus');
+            });
+            // update
+            commentInput.addEventListener('blur', function() {
+                if (currentCommend) {
+                    currentCommend.innerText = commentInput.value.trim();
+                    currentCommend = "";
+                    commentInput.value = "";
+                    inputContainer.classList.remove('focus');
+
+                   
+                }
+            });
+
+            commentInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    commentInput.blur();
+                }
+            });
+
+            commentItem.addEventListener('mouseleave', function(){
+                commentItem.classList.remove('edit-bg');
+
+            });
+        //  edit and update end
 
         commentTextDiv.appendChild(span);
         commentTextDiv.appendChild(p);
@@ -114,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     commentForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const commentText = commentInput.value.trim();
-
         if (commentText !== '') {
            
             const commendItem = document.createElement('div');
@@ -125,10 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
            const commendTextDiv = document.createElement('div');
            commendTextDiv.classList.add('commend-text');
            const span = document.createElement('span');
-           span.textContent = 'Jane Smith';
+           span.textContent = 'John Doe';
 
            const p = document.createElement('p');
-          p.classList.add('commend-display');
+          p.classList.add('comment-display');
           p.textContent = commentText;
 
         const deleteBtn = document.createElement('div');
@@ -137,8 +171,33 @@ document.addEventListener('DOMContentLoaded', () => {
          
         deleteBtn.addEventListener('click', () => {
                     commendItem.remove();
-       });
-        
+         });
+         //  edit 
+          let currentComment =null;
+           const editText = document.querySelector('.comment-display');
+           commendItem.addEventListener('dblclick', function(){
+            currentComment = p;
+            const oldText = p.innerText;
+            commentInput.value = oldText ;
+            inputContainer.classList.add('focus');
+            });
+            // update
+            commentInput.addEventListener('blur', function() {
+                if (currentComment) {
+                    currentComment.innerText = commentInput.value;
+                    currentComment = "";
+                    commentInput.value = "";
+                    inputContainer.classList.remove('focus');
+                   
+                }
+            });
+
+            commentInput.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    commentInput.blur();
+                }
+            });
+        //  edit and update end
             commendTextDiv.appendChild(span);
             commendTextDiv.appendChild(p);
 
@@ -155,6 +214,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
        
     });
+// edit
+
+
+    
     mainDeleteBtn.addEventListener('click', function() {
         document.querySelectorAll('.delete-btn').forEach((btn) => {
             btn.classList.toggle('show');
@@ -174,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
 });
 
-
+// end comment
 
 // show delete button
 

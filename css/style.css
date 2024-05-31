@@ -315,6 +315,10 @@ body {
     padding: 6px; */
     transition: all 0.5s ease;
 }
+.focus{
+   border: 1px solid rgb(12, 222, 241);
+   box-shadow: 0 0 6px rgb(12, 222, 241); /* Blue box shadow */
+}
 .hide-shadow:hover {
     box-shadow: none;
     padding: 0px;
